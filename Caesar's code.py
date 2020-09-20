@@ -13,7 +13,7 @@ class Translation:
         letters = ' abcdefghijklmnopqrstuvwxyz'
         n = self.new_phrase.n
         translation = ""
-        for i in self.new_phrase.phrase():
+        for i in self.new_phrase.phrase:
             if self.new_phrase.mode == "right":
                 translation += letters[(letters.index(i) + n) % len(letters)]
             else:
@@ -21,6 +21,7 @@ class Translation:
         return f"The translation is {translation}"
 
 def new_phrase():
+    print ("Use only  English letters!\n")
     phrase = input("Enter your word/phrase: ")
     phrase = phrase.lower()
     A = True
