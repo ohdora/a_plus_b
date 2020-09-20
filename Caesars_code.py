@@ -1,14 +1,19 @@
+# Nevzorova D.A Ft-290007
+
 class New_phrase:
     def __init__(self, phrase, mode, n):
         self.phrase = phrase
         self.mode = mode
         self.n = n
+
     def __str__(self):
         return
+
 
 class Translation:
     def __init__(self,new_phrase):
         self.new_phrase = new_phrase
+
     def translation(self):
         letters = ' abcdefghijklmnopqrstuvwxyz'
         n = self.new_phrase.n
@@ -19,6 +24,7 @@ class Translation:
             else:
                 translation += letters[(letters.index(i) - n) % len(letters)]
         return f"The translation is {translation}"
+
 
 def new_phrase():
     print ("Use only  English letters!\n")
@@ -59,6 +65,7 @@ def new_phrase():
     new_phrase = New_phrase(phrase, mode, n)
     translation = Translation(new_phrase)
     print(translation.translation())
+
 
 if __name__ == "__main__":
     new_phrase()
