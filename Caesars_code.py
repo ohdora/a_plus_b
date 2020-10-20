@@ -1,5 +1,7 @@
 # Nevzorova D.A Ft-290007
 
+import logging
+
 # create the class of entered phrase
 class New_phrase:
     def __init__(self, phrase, mode, n):
@@ -31,9 +33,12 @@ class Translation:
 
 # create the function of entering new words/phrases
 def new_phrase():
+    logging.basicConfig(filename='caesar.log', level=logging.INFO)
+    logging.info('Started')
     print ("Use only  English letters!\n")
     phrase = input("Enter your word/phrase: ")
     phrase = phrase.lower()
+    logging.info(f'User entered ({phrase})!')
     A = True
     while A == True:
         B = True
@@ -46,10 +51,12 @@ def new_phrase():
                 print("\nAll letters will be shifted to the right!")
                 mode = "right"
                 B = False
+                logging.info('User chose the right shift!')
             elif mode == "2":
                 print("\nAll letters will be shifted to the left!")
                 mode = "left"
                 B = False
+                logging.info('User chose the left shift!')
             else:
                 B = True
         # checking for the current input
@@ -58,23 +65,27 @@ def new_phrase():
             n = input("\nEnter the number of steps (no more than 26): ")
             if n.isdigit() == False:
                 print("Please, use only non-negative integers!")
+                logging.info('User entered the wrong value!')
             else:
                 n = int(n)
                 if n > 26:
                     print("Please, use numbers that are less than or equal to 26!")
+                    logging.info('User entered the wrong value!')
                 else:
                     C = False
         print(f"\nYour phrase: {phrase}; \nWe'll shift letters to the {mode} by {n}")
+        logging.info(f'User chose {n} step(s)!')
         # a user has an ability to change something before encrypting
         q = input("\nDo you want to change sth? (y/whatever you want for no):  ")
         if q == "y":
             A = True
+            logging.info('User decided to change the mode!')
         else:
             A = False
     new_phrase = New_phrase(phrase, mode, n)
     translation = Translation(new_phrase)
     print(translation.translation())
-
+    logging.info('Finished')
 
 # program starts working here
 if __name__ == "__main__":
